@@ -1,0 +1,25 @@
+{
+  "name": "express_server",
+  "version": "1.0.0",
+  "description": "Практика работы с Node.js и Handlebars",
+  "main": "meadowlark.js",
+  "scripts": {
+    "start": "node meadowlark.js",
+    "dev": "nodemon meadowlark.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "handlebars",
+    "learning",
+    "nodejs"
+  ],
+  "author": "Malyar Andrey",
+  "license": "ISC",
+  "dependencies": {
+    "d": "^1.0.2",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.1",
+    "nodemon": "^3.1.10"
+  }
+}
