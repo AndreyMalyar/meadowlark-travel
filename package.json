@@ -17,9 +17,10 @@
   "author": "Malyar Andrey",
   "license": "ISC",
   "dependencies": {
-    "d": "^1.0.2",
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.1",
+    "express-handlebars": "^8.0.1"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
