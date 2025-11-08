@@ -2,6 +2,8 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import { getFortune as fortune } from './lib/fortune.js'
 
+import * as handlers from './lib/handlers.js'
+
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
@@ -20,24 +22,15 @@ app.engine('handlebars', engine({
 app.set('view engine', 'handlebars')
 
 // пользовательские страницы
-app.get('/', (req, res) => res.render('home'))
+app.get('/', handlers.home)
 
-app.get('/about', (req, res) => {
-    res.render('about', {fortune: fortune()})
-})
+app.get('/about', handlers.about)
 
 // пользовательская страница 404
-app.use((req, res) => {
-    res.status(404)
-    res.render('404')
-})
+app.use(handlers.notFound)
 
 // пользовательская страница 500
-app.use((err, req, res, next) => {
-    console.error(err.message)
-    res.status(500)
-    res.render('500')
-})
+app.use(handlers.serverError)
 
 app.listen(port, () => console.log(
     `Express запущен на http://localhost:${port}; ${'\n'}` +
