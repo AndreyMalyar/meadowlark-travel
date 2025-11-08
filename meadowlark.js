@@ -1,9 +1,15 @@
-const express = require('express')
-const { engine } = require('express-handlebars')
-const fortune = require('./lib/fortune')
+import express from 'express'
+import { engine } from 'express-handlebars'
+import { getFortune as fortune } from './lib/fortune.js'
+
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 
 const app = express()
 const port = process.env.PORT || 3000
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 app.use(express.static(__dirname + '/public'))
 
@@ -17,7 +23,7 @@ app.set('view engine', 'handlebars')
 app.get('/', (req, res) => res.render('home'))
 
 app.get('/about', (req, res) => {
-    res.render('about', {fortune: fortune.getFortune()})
+    res.render('about', {fortune: fortune()})
 })
 
 // пользовательская страница 404
