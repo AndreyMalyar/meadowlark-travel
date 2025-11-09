@@ -2,67 +2,81 @@
 Практика работы с Node.js и Handlebars
 
 ## Технологии
-> * Node.js + Express
-> * Handlebars (шаблонизатор)
+> * **Node.js + Express 5** — серверная часть
+> * **Handlebars** — шаблонизатор
+> * **Jest** — unit-тестирование
+> * **Puppeteer** — E2E тестирование
+> * **ESLint** — проверка качества кода
+> * **ES Modules** — современный синтаксис import/export
 
 ## Установка и запуск
 > ### Установка:
 > ```bash
 > npm install
 > ```
+>
 > ### Запуск:
 > ```bash
-> npm start
-> ```
- 
-## Структура проекта
-> ### Структура
-> ```
->/views              — шаблоны Handlebars
->  /layouts          — основные layout'ы
->  *.handlebars      — страницы (home, about, 404, 500)
->/public             — статические файлы (CSS, JS, изображения)
->/node_modules       — зависимости
->meadowlark.js       — точка входа приложения
+> npm start          # Запуск продакшен-сервера
+> npm run dev        # Режим разработки с автоперезагрузкой (nodemon)
 > ```
 >
-> ### Основные маршруты
+> Сервер запустится на `http://localhost:3000`
+
+## Тестирование
+> ### Запуск тестов:
+> ```bash
+> npm test              # Все тесты
+> npm run test:unit     # Unit-тесты (handlers)
+> npm run test:e2e      # E2E тесты (Puppeteer)
+> npm run test:coverage # Тесты с покрытием кода
+> npm run test:watch    # Режим watch
 > ```
-> - `/` — Главная страница
-> - `/about` — О компании
-> - `404` — Страница не найдена
-> - `500` — Ошибка сервера 
+>
+> ### Проверка кода:
+> ```bash
+> npm run lint          # Проверка ESLint
+> npm run lint:fix      # Автоисправление
 > ```
 
-5. Основные маршруты/функции (опционально)
-   Если есть API или важные роуты
-6. Конфигурация (если нужна)
-   Переменные окружения, настройки
-7. Разработка (опционально)
-   Как вносить изменения, стиль кода
-8. Лицензия (опционально)
+## Структура проекта
+> ```
+> /views                    — шаблоны Handlebars
+>   /layouts                — основные layout'ы
+>   *.handlebars            — страницы (home, about, 404, 500)
+> /public                   — статические файлы (CSS, JS, изображения)
+> /lib                      — бизнес-логика
+>   /__tests__              — unit-тесты
+>   fortune.js              — модуль предсказаний
+>   handlers.js             — обработчики маршрутов
+> /integration-tests        — E2E тесты (Puppeteer)
+> /node_modules             — зависимости
+> meadowlark.js             — точка входа приложения
+> eslint.config.js          — конфигурация ESLint
+> jest.config.js            — конфигурация Jest
+> ```
 
-npx eslint --init
-You can also run this command directly using 'npm init @eslint/config@latest'.
-Need to install the following packages:
-@eslint/create-config@1.11.0
-Ok to proceed? (y) y
+## Основные маршруты
+> ```
+> GET  /        — Главная страница
+> GET  /about   — О компании (с предсказанием печенья)
+>      404      — Страница не найдена
+>      500      — Ошибка сервера
+> ```
 
+## Разработка
+> ### Стиль кода:
+> - ES Modules (import/export)
+> - ESLint для проверки качества
+> - 100% покрытие тестами для handlers
+>
+> ### Добавление новых маршрутов:
+> 1. Создать handler в `lib/handlers.js`
+> 2. Добавить тест в `lib/__tests__/handlers.test.js`
+> 3. Подключить в `meadowlark.js`
 
-> express_server@1.0.0 npx
-> create-config
+## Автор
+Malyar Andrey
 
-@eslint/create-config: v1.11.0
-
-√ What do you want to lint? · javascript
-√ How would you like to use ESLint? · problems
-√ What type of modules does your project use? · esm
-√ Which framework does your project use? · none
-√ Does your project use TypeScript? · No / Yes
-√ Where does your code run? · node
-i The config that you've selected requires the following dependencies:
-
-eslint, @eslint/js, globals
-√ Would you like to install them now? · No / Yes
-√ Successfully created C:\Work\practica-Js\express_server\eslint.config.js file.
-‼ You will need to install the dependencies yourself.
+## Лицензия
+ISC

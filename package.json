@@ -1,25 +1,28 @@
 {
   "name": "express_server",
   "version": "1.0.0",
-  "description": "Практика работы с Node.js и Handlebars",
+  "description": "Практика работы с Node.js, Express и Handlebars с тестированием",
   "main": "meadowlark.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "start": "node meadowlark.js",
     "dev": "nodemon meadowlark.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js lib/__tests__/",
     "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js integration-tests/",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "express",
     "handlebars",
-    "learning",
-    "nodejs"
+    "nodejs",
+    "jest",
+    "puppeteer",
+    "testing",
+    "learning"
   ],
   "author": "Malyar Andrey",
   "license": "ISC",
