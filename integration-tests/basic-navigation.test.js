@@ -1,7 +1,7 @@
-import portfinder from 'portfinder'
-import puppeteer from 'puppeteer'
+const portfinder = require('portfinder')
+const puppeteer = require('puppeteer')
 
-import app from '../meadowlark.js'
+const app = require('../meadowlark')
 
 let server = null
 let port = null

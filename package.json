@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Практика работы с Node.js, Express и Handlebars с тестированием",
   "main": "meadowlark.js",
-  "type": "module",
   "scripts": {
     "start": "node meadowlark.js",
     "dev": "nodemon meadowlark.js",

@@ -1,7 +1,13 @@
 # Зависимости
 node_modules/
 
+# Тесты
+coverage/
+*.lcov
+.jest-cache/
+
 # IDE
+.vscode/
 .idea/
 *.swp
 *.swo

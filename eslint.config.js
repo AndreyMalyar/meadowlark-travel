@@ -1,7 +1,7 @@
-import js from "@eslint/js";
-import globals from "globals";
+const js = require("@eslint/js")
+const globals = require("globals")
 
-export default [
+module.exports = [
   {
     ignores: ["node_modules/", "coverage/", ".idea/"]  // Новый способ игнорирования
   },
@@ -10,7 +10,7 @@ export default [
     files: ["**/*.js"],
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: "module",
+      sourceType: "commonjs",
       globals: {
         ...globals.node,
         ...globals.jest,  // Добавили Jest глобалы
