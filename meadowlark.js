@@ -1,6 +1,5 @@
 import express from 'express'
 import { engine } from 'express-handlebars'
-import { getFortune as fortune } from './lib/fortune.js'
 
 import * as handlers from './lib/handlers.js'
 
@@ -32,7 +31,17 @@ app.use(handlers.notFound)
 // пользовательская страница 500
 app.use(handlers.serverError)
 
-app.listen(port, () => console.log(
-    `Express запущен на http://localhost:${port}; ${'\n'}` +
-    'нажмите Ctrl+C для завершения'
-))
+// Экспортируем app для тестов
+export default app
+
+// Запускаем сервер только если файл запущен напрямую
+const isMainModule = process.argv[1] === fileURLToPath(import.meta.url)
+
+if (isMainModule) {
+    app.listen(port, () => {
+        console.log(
+            `Express запущен на http://localhost:${port}; ` + '\n' +
+            'нажмите Ctrl+C для завершения.'
+        )
+    })
+}
