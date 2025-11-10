@@ -7,6 +7,11 @@
 > git tag
 > ```
 
+> ### Создать тег
+> git tag -a v1.0-handlebars-examples -m "Примеры использования Handlebars на основе версии 1.0"
+> // пушим в репозиторий \
+> git push origin v1.0-handlebars-examples
+
 > ### Переключится на сохраненную версию (только просмотр)
 > // переключаемся на нужный тег \
 > git checkout v1.0-tests-complete
