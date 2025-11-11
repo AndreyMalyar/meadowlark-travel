@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Meadowlark Travel</title>
         <link rel="stylesheet" href="/css/style.css" />
-
+        {{! вставка section 'head' из страницы}}
         {{{_sections.head}}}
     </head>
     <body>
@@ -16,7 +16,7 @@
         </header>
         <main class="main">
             <div class="container">
-                {{! Секретный комментарий }}
+                {{! Секретный комментарий - не попадет в html }}
                 {{{body}}}
             </div>
         </main>
@@ -26,6 +26,7 @@
             </div>
         </footer>
 
+    {{! вставка section 'script' из страницы}}
     {{{_sections.scripts}}}
     </body>
 </html>

@@ -1,3 +1,10 @@
+{{!--
+    partial (частичный шаблон)
+    поключается через {{> weather}}
+
+    этот partial использует section для добавления стилей в <head>
+--}}
+{{! стили, попадут в <head> основного layout'а}}
 {{#section 'head'}}
     <style>
         .weather-widget {
@@ -12,8 +19,10 @@
 {{/section}}
 
 <div class="weather-widget">
+    {{! each - цикл по массиву partials.weatherContext }}
     {{#each partials.weatherContext}}
         <div class="location">
+            {{! обращение к вложенному свойству {{location.name}}
             <h3>{{location.name}}</h3>
             <a href="{{forecastUrl}}">
                 <img src="{{iconUrl}}" alt="{{weather}}" />

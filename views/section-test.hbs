@@ -1,3 +1,12 @@
+{{!--
+    Пример использования sections
+    Sections позволяют вставлять контент из страницы в layout для одной страницы(localhost:3000/section-test)
+--}}
+
+{{!--
+    section 'head' - вставится в layout в месте {{{_sections.head}}}
+    используется для добавления meta-тегов, стилей, скриптов в <head>
+--}}
 {{# section 'head'}}
     <!-- Мы хотим, чтоб Google игнорировал эту страницу -->
     <meta name="robots" content="noindex">
@@ -6,6 +15,10 @@
 <h2>Тестовая страница</h2>
 <p>Тестируем что-нибудь связанное со скриптом</p>
 
+{{!--
+    section 'scripts' - вставится в layout в месте {{{_sections.scripts}}}
+    используется для добавления скриптов перед закрытием </body>
+--}}
 {{# section 'scripts'}}
     <script>
         document.querySelector('body')
