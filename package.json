@@ -6,11 +6,11 @@
   "scripts": {
     "start": "node meadowlark.js",
     "dev": "nodemon meadowlark.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js lib/__tests__/",
-    "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js integration-tests/",
-    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test": "jest",
+    "test:unit": "jest lib/__tests__/",
+    "test:e2e": "jest integration-tests/",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
