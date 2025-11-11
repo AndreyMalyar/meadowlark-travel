@@ -13,9 +13,7 @@
     "handlebars",
     "nodejs",
     "jest",
-    "puppeteer",
-    "testing",
-    "learning"
+    "testing"
   ],
   "author": "Malyar Andrey",
   "license": "ISC",
