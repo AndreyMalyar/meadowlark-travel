@@ -1,0 +1,17 @@
+<h2>Подпишитесь на нашу рассылку для получения новостей и специальных предложений!</h2>
+
+<form class="form-horizontal" role="form"
+      action="/newsletter-signup/process?form=newsletter-signup" method="POST">
+    <input type="hidden" name="_csrf" value="{{csrf}}" />
+    <div class="form__group">
+        <label for="fieldName" class="form__label">Имя</label>
+        <input type="text" class="form__control" name="name" id="fieldName"/>
+    </div>
+    <div class="form__group">
+        <label for="fieldEmail" class="form__label">Электронный адрес</label>
+        <input type="email" class="form__control" name="email" id="fieldEmail" required/>
+    </div>
+    <div class="form__group">
+        <button type="submit" class="form__btn form__btn--default">Зарегистрироваться</button>
+    </div>
+</form>
