@@ -1,0 +1,51 @@
+<h2>Информационный бюллетень компании Meadowlark Travel</h2>
+
+<div id="newsletterForm-box">
+    <form class="form" role="form" id="newsletterForm">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+        <div class="form__group">
+            <label for="fieldName" class="form__label">Имя</label>
+            <input type="text" class="form__control" name="name" id="fieldName"/>
+        </div>
+        <div class="form__group">
+            <label for="fieldEmail" class="form__label">Электронный адрес</label>
+            <input type="email" class="form__control" name="email" id="fieldEmail" required/>
+        </div>
+        <div class="form__group">
+            <button type="submit" class="form__btn form__btn--default">Зарегистрироваться</button>
+        </div>
+    </form>
+</div>
+
+{{#section 'scripts'}}
+    <script>
+        document.getElementById('newsletterForm')
+            .addEventListener('submit', evt => {
+                evt.preventDefault()
+                const form = evt.target
+                const body = JSON.stringify({
+                    _csrf: form.elements._csrf.value,
+                    name: form.elements.name.value,
+                    email: form.elements.email.value,
+                })
+                const headers = {'Content-type': 'application/json'}
+                const container = document.getElementById('newsletterForm-box')
+                try{
+                    fetch('/api/newsletter', { method: 'post', body, headers })
+                        .then(resp => {
+                            if(resp.status < 200 || resp.status >= 300){
+                                throw new Error(`Запрос завершился с ошибкой со статусом ${resp.status}`)
+                            }
+                            return resp.json()
+                        })
+                        .then(json => {
+                            container.innerHTML = '<b>Спасибо за регистрацию!</b>'
+                        })
+                }catch(err){
+                    container.innerHTML = '<b>Извините, у нас возникла проблема регистрируем вас.</b>' +
+                                          'Пожалуйста <a href="/newsletter">Попробуйте еще раз</a>'
+                    console.log(err)
+                }
+            })
+    </script>
+{{/section}}

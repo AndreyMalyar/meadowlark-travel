@@ -54,10 +54,15 @@ app.get('/', handlers.home)
 
 app.get('/about', handlers.about)
 
-// handlers for browser-based form submission
+app.get('/newsletter', handlers.newsletter)
+
+// обработчики для отправки форм через браузер
 app.get('/newsletter-signup', handlers.newsletterSignup)
 app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
 app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
+
+// обработчик для отправки формы через fetch (API)
+app.post('/api/newsletter', handlers.api.newsletterSignup)
 
 // Обработчик 404 (страница не найдена), должна быть после всех маршрутов
 app.use(handlers.notFound)
