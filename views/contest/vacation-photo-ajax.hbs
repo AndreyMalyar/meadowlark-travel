@@ -1,0 +1,49 @@
+<h2>Конкурс отпускных фотографий</h2>
+
+<div id="vacationPhotoContest__box">
+    <form class="form-horizontal" role="form"
+          id="vacationPhotoContest__form"
+          enctype="multipart/form-data" method="POST"
+          action="/contest/vacation-photo/{{year}}/{{month}}" >
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+        <div class="form__group">
+            <label for="fieldName" class="control-label">Имя</label>
+            <input type="text" class="form-control" id="fieldName" name="name">
+        </div>
+        <div class="form__group">
+            <label for="fieldEmail" class="control-label">Адрес электронной почты</label>
+            <input type="email" class="form-control" id="fieldEmail" name="email" required>
+        </div>
+        <div class="form__group">
+            <label for="fieldPhoto" class="control-label">Фотографии из отпуска</label>
+            <input type="file" class="form-control" id="fieldPhoto" name="photo" accept="image/*" required>
+        </div>
+        <div class="form__group">
+            <button type="submit" class="btn btn__primary">Отправить</button>
+        </div>
+    </form>
+</div>
+
+{{#section 'scripts'}}
+    <script>
+        document.getElementById('vacationPhotoContest__form')
+            .addEventListener('submit', evt => {
+                evt.preventDefault()
+                const body = new FormData(evt.target)
+                const container = document.getElementById('vacationPhotoContest__box')
+                const url = '/api/vacation-photo-contest/{{year}}/{{month}}'
+                fetch(url, { method: 'post', body })
+                    .then(resp => {
+                        if(resp.status < 200 || resp.status >= 300) throw new Error(`Запрос завершился с ошибкой со статусом ${resp.status}`)
+                        return resp.json()
+                    })
+                    .then(json => {
+                        container.innerHTML = 'Спасибо за предоставленную фотографию!'
+                    })
+                    .catch(err => {
+                        container.innerHTML = 'Извините, у нас возникла проблема при обработке, ' + '<br>' +
+                                            'пожалуйста, <a href="/contest/vacation-photo-ajax">попробуйте еще раз</a>'
+                    })
+            })
+    </script>
+{{/section}}

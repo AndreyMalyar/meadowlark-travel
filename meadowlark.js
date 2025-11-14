@@ -5,6 +5,7 @@
 const express = require('express')
 const { engine } = require('express-handlebars')
 const bodyParser = require('body-parser')
+const multiparty = require('multiparty')
 
 const handlers = require('./lib/handlers.js')
 
@@ -64,16 +65,39 @@ app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
 // обработчик для отправки формы через fetch (API)
 app.post('/api/newsletter', handlers.api.newsletterSignup)
 
-// Обработчик 404 (страница не найдена), должна быть после всех маршрутов
-app.use(handlers.notFound)
+// конкурс фотографий из отпуска
+app.get('/contest/vacation-photo', handlers.vacationPhotoContest)
+app.get('/contest/vacation-photo-ajax', handlers.vacationPhotoContestAjax)
 
-// Обработчик 500 (ошибка сервера), должен быть последним
+// parse из Multiparty, он сохраняет файлы во временный каталог на сервере, возвращается в массиве files
+app.post('/contest/vacation-photo/:year/:month', (req, res) => {
+    const form = new multiparty.Form()
+    form.parse(req, (err, fields, files) => {
+        if(err) return res.status(500).send({ error: err.message })
+        handlers.vacationPhotoContestProcess(req, res, fields, files)
+    })
+})
+
+// для API запросов (AJAX)
+app.post('/api/vacation-photo-contest/:year/:month', (req, res) => {
+    const form = new multiparty.Form({
+            uploadDir: './public/uploads'  // укажите свою папку
+    })
+    form.parse(req, (err, fields, files) => {
+        if(err) return res.status(500).send({ error: err.message })
+        handlers.api.vacationPhotoContest(req, res, fields, files)
+    })
+})
+
+app.get('/contest/vacation-photo-thank-you', handlers.vacationPhotoContestProcessThankYou)
+
+// Обработчики ошибок 404 и 500
+app.use(handlers.notFound)
 app.use(handlers.serverError)
 
 // ====================================================
 // ЗАПУСК СЕРВЕРА
 // ====================================================
-
 app.listen(port, () => {
     console.log(
         `Express запущен на http://localhost:${port}; ` + '\n' +

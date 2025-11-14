@@ -1,0 +1,22 @@
+<h2>Конкурс отпускных фотографий</h2>
+
+<form class="form-horizontal" role="form"
+      enctype="multipart/form-data" method="POST"
+      action="/contest/vacation-photo/{year}/{month}" >
+    <input type="hidden" name="_csrf" value="{{csrf}}" />
+    <div class="form__group">
+        <label for="fieldName" class="control-label">Имя</label>
+        <input type="text" class="form-control" id="fieldName" name="name">
+    </div>
+    <div class="form__group">
+        <label for="fieldEmail" class="control-label">Адрес электронной почты</label>
+        <input type="email" class="form-control" id="fieldEmail" name="email" required>
+    </div>
+    <div class="form__group">
+        <label for="fieldPhoto" class="control-label">Фотографии из отпуска</label>
+        <input type="file" class="form-control" id="fieldPhoto" name="photo" accept="image/*" required>
+    </div>
+    <div class="form__group">
+        <button type="submit" class="btn btn__primary">Отправить</button>
+    </div>
+</form>
