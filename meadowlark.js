@@ -108,6 +108,9 @@ app.post('/api/vacation-photo-contest/:year/:month', (req, res) => {
 // страница благодарности после загрузки фотографии
 app.get('/contest/vacation-photo-thank-you', handlers.vacationPhotoContestProcessThankYou)
 
+// страница ошибки загрузки фото
+app.get('/contest/vacation-photo-error', handlers.vacationPhotoContestProcessError)
+
 // Обработчики ошибок 404 и 500
 app.use(handlers.notFound)
 app.use(handlers.serverError)
