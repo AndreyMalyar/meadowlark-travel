@@ -27,3 +27,8 @@ Thumbs.db
 
 # Временные файлы
 *.tmp
+
+# Игнорируем все содержимое папки uploads
+# Но НЕ игнорируем сам файл .gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
